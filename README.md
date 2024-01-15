@@ -5,7 +5,8 @@
 React HOC which dynamically handles styling using
 [Intersection Observer API][io-api-docs]
 to determine whether the component enters or exits the viewport. Includes both
-the HOC and custom hook.
+a [HOC](#withviewportobserver-higher-order-component) and
+[hook](#useintersectionobserver-hook).
 
 ## Installation
 
@@ -22,7 +23,7 @@ only trigger when the component enters the viewport.
 
 ```js
 import React from 'react';
-import { WithViewPortObserver } from 'react-style-in-viewport
+import { WithViewPortObserver } from 'react-style-in-viewport'
 
 import s from './AnimateComponent.module.css';
 
@@ -35,7 +36,7 @@ const AnimateComponent = () => {
       >
         <h2>Watch me fade in!</h2>
       </WithObserver>
-    <>
+    </>
   );
 };
 ```
@@ -50,7 +51,7 @@ logic to be developed.
 import React from 'react';
 import { useIntersectionObserver } from 'react-style-in-viewport';
 
-const Component = () => {
+const TextComponent = () => {
   const { elementRef, isIntersecting } = useIntersectionObserver({
     threshold: 0, // Optional threshold
   });
