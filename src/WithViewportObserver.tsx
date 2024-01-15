@@ -22,7 +22,7 @@ import { useIntersectionObserver } from './useIntersectionObserver';
   Observer API.
 */
 
-export function WithObserver({
+export function WithViewportObserver({
   children,
   threshold = 0.1,
   truthyClasses = [],

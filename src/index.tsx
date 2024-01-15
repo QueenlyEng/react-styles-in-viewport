@@ -1,4 +1,4 @@
 'use client';
 
 export { useIntersectionObserver } from './useIntersectionObserver';
-export { WithObserver } from './WithObserver';
+export { WithViewportObserver } from './WithViewportObserver';

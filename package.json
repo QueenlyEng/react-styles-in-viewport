@@ -1,7 +1,7 @@
 {
-  "name": "react-styles-with-intersection-observer",
+  "name": "react-styles-in-viewport",
   "version": "1.0.0",
-  "description": "Determine component styling if an element is inside the viewport, using the IntersectionObserver API.",
+  "description": "Determine component styling if it is within the viewport, using the IntersectionObserver API.",
   "source": "./src/index.tsx",
   "main": "./src/index.tsx",
   "scripts": {
@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/QueenlyEng/react-styles-with-intersection-observer.git"
+    "url": "https://github.com/QueenlyEng/react-styles-in-viewport.git"
   },
   "author": "Alex Pezzati",
   "license": "MIT",
