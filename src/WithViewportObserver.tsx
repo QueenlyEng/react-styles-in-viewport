@@ -25,15 +25,16 @@ import { useIntersectionObserver } from './useIntersectionObserver';
 export function WithViewportObserver({
   children,
   threshold = 0.1,
-  truthyClasses = [],
-  falseyClasses = [],
+  classesDefault = [],
+  classesIsVisible = [],
+  classesNotVisible = [],
 }) {
   const { elementRef, isIntersecting } = useIntersectionObserver(threshold);
-  const classes = isIntersecting ? truthyClasses : falseyClasses;
+  const chosenClasses = isIntersecting ? classesIsVisible : classesNotVisible;
 
   return (
     <div
-      className={`${!Array.isArray(classes) ? classes : classes.join(' ')}`}
+      className={`${[classesDefault, chosenClasses].flat().join(' ')}`}
       ref={elementRef}
     >
       {children}
