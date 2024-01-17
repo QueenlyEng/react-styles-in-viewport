@@ -2,6 +2,8 @@ import React from 'react';
 
 import { useIntersectionObserver } from './useIntersectionObserver';
 
+import type { WithViewportObserverProps } from './index';
+
 /*
   WithObserver utilizes the IntersectionObserver API to create a wrapper
   element (div) to act as a listener via a ref for when that element and its
@@ -24,12 +26,12 @@ import { useIntersectionObserver } from './useIntersectionObserver';
 
 export function WithViewportObserver({
   children,
-  threshold = 0.1,
   classesDefault = [],
   classesIsVisible = [],
   classesNotVisible = [],
-}) {
-  const { elementRef, isIntersecting } = useIntersectionObserver(threshold);
+  threshold,
+}: WithViewportObserverProps): React.JSX.Element {
+  const { elementRef, isIntersecting } = useIntersectionObserver({ threshold });
   const chosenClasses = isIntersecting ? classesIsVisible : classesNotVisible;
 
   return (

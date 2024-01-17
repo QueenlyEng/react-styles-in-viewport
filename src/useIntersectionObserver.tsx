@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
+import {
+  useIntersectionObserverOptions,
+  useIntersectionObserverResponse,
+} from './index';
+
 /*
   useIntersectionObserver utilizes the IntersectionObserver API with a React
   ref to determine whether an element has entered the viewport.
@@ -13,7 +18,9 @@ import { useEffect, useRef, useState } from 'react';
   not an element is "intersecting" the viewport.
 */
 
-export function useIntersectionObserver(threshold = 1) {
+export function useIntersectionObserver({
+  threshold,
+}: useIntersectionObserverOptions): useIntersectionObserverResponse {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const elementRef = useRef(null);
 
@@ -35,5 +42,13 @@ export function useIntersectionObserver(threshold = 1) {
     }
   }, [threshold]);
 
-  return { elementRef, isIntersecting };
+  const output = [
+    elementRef,
+    isIntersecting,
+  ] as useIntersectionObserverResponse;
+
+  output.elementRef = output[0];
+  output.isIntersecting = output[1];
+
+  return output;
 }
