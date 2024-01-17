@@ -4,25 +4,37 @@ import { useIntersectionObserver } from './useIntersectionObserver';
 
 import type { WithViewportObserverProps } from './index';
 
-/*
-  WithObserver utilizes the IntersectionObserver API to create a wrapper
-  element (div) to act as a listener via a ref for when that element and its
-  children are visible within the viewport on the client.
+/**
+ * Use `WithViewportObserver` to flag for animations and any amount of styles to
+ * only trigger when the component enters the viewport.
+ *
+ * @param { WithViewportObserverProps } obj
+ * @param { string | string[] } obj.classesDefault
+ * @param { string | string[]  } obj.classesIsVisible
+ * @param { string | string[]  } obj.classesNotVisible
+ * @param { Element } obj.root
+ * @param { string } obj.rootMargin
+ * @param { number | number[] } obj.threshold
+ *
+ * @example
+ * ```js
+ * import React from 'react';
+ * import { WithViewPortObserver } from 'react-style-in-viewport'
 
-  threshold: is a parameter for the IntersectionObserver to determine how
-  much of the element should be in the viewport before being flagged as visible
-  via the value of `isIntersecting`. A value of `1` means the entirety of the
-  element must enter the viewport to trigger a `truthy` return value.
+ * import s from './AnimateComponent.module.css';
 
-  truthyClasses: any number of classes, whether one or more, to be assigned to
-  the wrapper element should `isIntersecting` be `true`.
-
-  falseyClasses: any number of classes, whether one or more, to be assigned to
-  the wrapper element should `isIntersecting` be `true`.
-
-  elementRef is the output of React's useRef as utilized by the Intersection
-  Observer API.
-*/
+ * const AnimateComponent = () => {
+ *   return (
+ *     <WithViewportObserver
+ *       classesIsVisible={[s.fadeIn, s.wiggle]}
+ *       classesNotVisible={s.fadeOut}
+ *     >
+ *       <h2>Watch me fade in and transform!</h2>
+ *     </WithViewportObserver>
+ *   );
+ * };
+ * ```
+ */
 
 export function WithViewportObserver({
   children,
