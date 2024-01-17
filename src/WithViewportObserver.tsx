@@ -32,11 +32,14 @@ export function WithViewportObserver({
   threshold,
 }: WithViewportObserverProps): React.JSX.Element {
   const { elementRef, isIntersecting } = useIntersectionObserver({ threshold });
-  const chosenClasses = isIntersecting ? classesIsVisible : classesNotVisible;
+  const chosenClasses = [
+    classesDefault,
+    isIntersecting ? classesIsVisible : classesNotVisible,
+  ].flat();
 
   return (
     <div
-      className={`${[classesDefault, chosenClasses].flat().join(' ')}`}
+      className={`${chosenClasses.join(' ')}`}
       ref={elementRef}
     >
       {children}
