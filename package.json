@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Determine component styling if it is within the viewport, using the IntersectionObserver API.",
   "source": "./src/index.tsx",
-  "main": "./src/index.tsx",
+  "main": "./dist/index.js",
   "scripts": {
     "build": "tsc --build",
     "clean": "tsc --build --clean",
