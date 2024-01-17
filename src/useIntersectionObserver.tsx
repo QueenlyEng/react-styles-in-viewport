@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import {
-  useIntersectionObserverOptions,
+  IntersectionObserverOptions,
   useIntersectionObserverResponse,
 } from './index';
 
@@ -19,8 +19,10 @@ import {
 */
 
 export function useIntersectionObserver({
+  root,
+  rootMargin,
   threshold,
-}: useIntersectionObserverOptions): useIntersectionObserverResponse {
+}: IntersectionObserverOptions): useIntersectionObserverResponse {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const elementRef = useRef(null);
 
@@ -30,7 +32,7 @@ export function useIntersectionObserver({
         ([entry]) => {
           setIsIntersecting(entry.isIntersecting);
         },
-        { threshold }
+        { root, rootMargin, threshold }
       );
 
       const element = elementRef.current;
