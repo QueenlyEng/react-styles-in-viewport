@@ -5,13 +5,13 @@ import { useIntersectionObserver } from './useIntersectionObserver';
 import type { WithViewportObserverProps } from './index';
 
 /**
- * Use `WithViewportObserver` to flag for animations and any amount of styles to
- * only trigger when the component enters the viewport.
+ * Use `WithViewportObserver` to flag for animations and any amount of styles
+ * to only trigger when the component enters the viewport.
  *
  * @param { WithViewportObserverProps } obj
  * @param { string | string[] } obj.classesDefault
- * @param { string | string[]  } obj.classesIsVisible
- * @param { string | string[]  } obj.classesNotVisible
+ * @param { string | string[] } obj.classesIsVisible
+ * @param { string | string[] } obj.classesNotVisible
  * @param { Element } obj.root
  * @param { string } obj.rootMargin
  * @param { number | number[] } obj.threshold
