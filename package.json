@@ -1,6 +1,6 @@
 {
   "name": "react-styles-in-viewport",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Determine component styling if it is within the viewport, using the IntersectionObserver API.",
   "exports": "./dist/index.js",
   "module": "dist/index.js",
