@@ -2,10 +2,8 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
-    "module": "CommonJS",
-    // "moduleResolution": "node",
-    "outDir": "dist",
-    "sourceMap": true,
-    "target": "ES2019",
+    "jsxFactory": "React.createElement",
+    "module": "ESNext",
+    "target": "ESNext",
   }
 }

@@ -2,11 +2,13 @@
   "name": "react-styles-in-viewport",
   "version": "1.0.0",
   "description": "Determine component styling if it is within the viewport, using the IntersectionObserver API.",
-  "source": "./src/index.tsx",
-  "main": "./dist/index.js",
+  "exports": "./dist/index.js",
+  "module": "dist/index.js",
+  "source": "src/index.tsx",
+  "type": "module",
   "scripts": {
-    "build": "tsc --build",
-    "clean": "tsc --build --clean",
+    "build": "rm -rf dist && microbundle -f esm",
+    "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -21,11 +23,15 @@
     "type": "git",
     "url": "https://github.com/QueenlyEng/react-styles-in-viewport.git"
   },
+  "bugs": {
+    "url": "https://github.com/QueenlyEng/react-styles-in-viewport/issues"
+  },
   "author": "Alex Pezzati",
   "license": "MIT",
   "devDependencies": {
     "@types/react": "^18.2.12",
     "@types/react-dom": "^18.2.5",
+    "microbundle": "^0.15.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.3.3"
