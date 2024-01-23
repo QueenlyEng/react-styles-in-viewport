@@ -1,12 +1,33 @@
 {
   "name": "react-styles-in-viewport",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Determine component styling if it is within the viewport, using the IntersectionObserver API.",
-  "source": "./src/index.tsx",
-  "main": "./src/index.tsx",
+  "exports": "./dist/index.js",
+  "module": "dist/index.js",
+  "source": "src/index.tsx",
+  "type": "module",
   "scripts": {
+    "prepublishOnly": "npm run build",
+    "prebuild": "rm -rf dist",
+    "build": "microbundle -f esm",
+    "postbuild": "npm run size",
+    "size": "size-limit",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "size-limit": [
+    {
+      "path": "dist/react-styles-in-viewport.js",
+      "name": "WithViewportObserver",
+      "import": "{ WithViewportObserver }",
+      "limit": "0.6 kB"
+    },
+    {
+      "path": "dist/react-styles-in-viewport.js",
+      "name": "useIntersectionObserver",
+      "import": "{ useIntersectionObserver }",
+      "limit": "0.5 kB"
+    }
+  ],
   "keywords": [
     "intersection",
     "IntersectionObserver",
@@ -19,14 +40,19 @@
     "type": "git",
     "url": "https://github.com/QueenlyEng/react-styles-in-viewport.git"
   },
+  "bugs": {
+    "url": "https://github.com/QueenlyEng/react-styles-in-viewport/issues"
+  },
   "author": "Alex Pezzati",
   "license": "MIT",
   "devDependencies": {
+    "@size-limit/preset-small-lib": "^11.0.2",
     "@types/react": "^18.2.12",
     "@types/react-dom": "^18.2.5",
+    "microbundle": "^0.15.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "ts-node": "^10.9.2",
+    "size-limit": "^11.0.2",
     "typescript": "^5.3.3"
   },
   "peerDependencies": {

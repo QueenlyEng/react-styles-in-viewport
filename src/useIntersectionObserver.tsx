@@ -1,19 +1,44 @@
 import { useEffect, useRef, useState } from 'react';
 
-/*
-  useIntersectionObserver utilizes the IntersectionObserver API with a React
-  ref to determine whether an element has entered the viewport.
+import type {
+  IntersectionObserverOptions,
+  useIntersectionObserverResponse,
+} from './index';
 
-  threshold: is a parameter for the IntersectionObserver to determine how
-  much of the element should be in the viewport before being flagged as visible
-  via the value of `isIntersecting`. A value of `1` means the entirety of the
-  element must enter the viewport to trigger a `truthy` return value.
+/**
+ * You can utilize the `useIntersectionObserver` hook to more specifically flag
+ * when an element (via a React ref) enters the viewport. This enables custom
+ * logic to be developed.
+ *
+ * @param { IntersectionObserverOptions } obj
+ * @param { Element } obj.root
+ * @param { string } obj.rootMargin
+ * @param { number | number[] } obj.threshold
+ *
+ * @example
+ * ```js
+ * import React from 'react';
+ * import { useIntersectionObserver } from 'react-style-in-viewport';
+ *
+ * const TextComponent = () => {
+ *   const [ elementRef, isIntersecting ] = useIntersectionObserver({
+ *     threshold: 0.5, // Optional threshold
+ *   });
+ *
+ *   return (
+ *     <div ref={elementRef}>
+ *       <p>{`Text is visible in the viewport: ${isIntersecting}.`}</p>
+ *     </div>
+ *    );
+ * };
+ * ```
+ */
 
-  isIntersecting is a boolean returned from the hook to determine whether or
-  not an element is "intersecting" the viewport.
-*/
-
-export function useIntersectionObserver(threshold = 1) {
+export function useIntersectionObserver({
+  root,
+  rootMargin,
+  threshold,
+}: IntersectionObserverOptions): useIntersectionObserverResponse {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const elementRef = useRef(null);
 
@@ -23,7 +48,7 @@ export function useIntersectionObserver(threshold = 1) {
         ([entry]) => {
           setIsIntersecting(entry.isIntersecting);
         },
-        { threshold }
+        { root, rootMargin, threshold }
       );
 
       const element = elementRef.current;
@@ -35,5 +60,13 @@ export function useIntersectionObserver(threshold = 1) {
     }
   }, [threshold]);
 
-  return { elementRef, isIntersecting };
+  const output = [
+    elementRef,
+    isIntersecting,
+  ] as useIntersectionObserverResponse;
+
+  output.elementRef = output[0];
+  output.isIntersecting = output[1];
+
+  return output;
 }
